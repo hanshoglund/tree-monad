@@ -38,6 +38,11 @@ instance Monad SearchTree
 
   fail _ = None
 
+instance MonadPlus SearchTree
+ where
+  mzero = None
+  mplus = Choice
+
 instance Semigroup (SearchTree a)
  where
   (<>) = mplus
@@ -46,11 +51,6 @@ instance Monoid (SearchTree a)
  where
   mempty = mzero
   mappend = mplus
-
-instance MonadPlus SearchTree
- where
-  mzero = None
-  mplus = Choice
 
 
 -- |
