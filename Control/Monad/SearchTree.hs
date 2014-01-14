@@ -20,6 +20,7 @@
 module Control.Monad.SearchTree ( SearchTree(..), Search, searchTree ) where
 
 import Control.Monad
+import Data.Semigroup
 
 -- | 
 -- The type @SearchTree a@ represents non-deterministic computations
@@ -36,6 +37,15 @@ instance Monad SearchTree
   Choice s t >>= f = Choice (s >>= f) (t >>= f)
 
   fail _ = None
+
+instance Semigroup (SearchTree a)
+ where
+  (<>) = mplus
+
+instance Monoid (SearchTree a)
+ where
+  mempty = mzero
+  mappend = mplus
 
 instance MonadPlus SearchTree
  where

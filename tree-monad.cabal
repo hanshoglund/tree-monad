@@ -21,7 +21,7 @@ Stability:     experimental
 Extra-Source-Files: README
 
 Library
-  Build-Depends:    base
+  Build-Depends:    base, semigroups
   Exposed-Modules:  Control.Monad.SearchTree
   Ghc-Options:      -Wall
   Extensions:       Rank2Types
